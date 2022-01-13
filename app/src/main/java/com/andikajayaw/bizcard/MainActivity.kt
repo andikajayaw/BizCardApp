@@ -1,6 +1,7 @@
 package com.andikajayaw.bizcard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -54,6 +55,10 @@ fun CreateBizCard() {
                 CreateProfileImage()
                 Divider(modifier = Modifier.padding(5.dp))
                 CreateInfo()
+                Button(onClick = { Log.d("Clicked", "CreateBizCard: Clicked!")}, modifier = Modifier.padding(5.dp)) {
+                    Text(text = "Portfolio",
+                    style = MaterialTheme.typography.button)
+                }
             }
 
         }
