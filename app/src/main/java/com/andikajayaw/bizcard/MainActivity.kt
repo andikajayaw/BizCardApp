@@ -46,14 +46,37 @@ fun CreateBizCard() {
             shape= RoundedCornerShape(corner = CornerSize(15.dp)),
             elevation = 4.dp) {
             
-            Column(modifier = Modifier.height(300.dp),
+            Column(modifier = Modifier
+                .height(300.dp)
+                .padding(5.dp),
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.CenterHorizontally) {
                 CreateProfileImage()
-                Divider()
+                Divider(modifier = Modifier.padding(5.dp))
+                CreateInfo()
             }
 
         }
+    }
+}
+
+@Composable
+private fun CreateInfo() {
+    Column(modifier = Modifier.padding(5.dp)) {
+        Text(
+            text = "Andika Jaya",
+            style = MaterialTheme.typography.h4,
+            color = MaterialTheme.colors.primaryVariant
+        )
+        Text(
+            text = "Junior Android Programmer",
+            modifier = Modifier.padding(3.dp)
+        )
+        Text(
+            text = "@andikajayaw",
+            modifier = Modifier.padding(3.dp),
+            style = MaterialTheme.typography.subtitle1
+        )
     }
 }
 
