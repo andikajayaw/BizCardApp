@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -19,8 +20,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.andikajayaw.bizcard.ui.theme.BizCardTheme
@@ -53,7 +56,7 @@ fun CreateBizCard() {
             .padding(12.dp),
             shape= RoundedCornerShape(corner = CornerSize(15.dp)),
             elevation = 4.dp) {
-            
+
             Column(modifier = Modifier
                 .height(300.dp)
                 .padding(5.dp),
@@ -69,7 +72,7 @@ fun CreateBizCard() {
                 if (buttonClickedState.value) {
                     Content()
                 } else {
-                    Box() {
+                    Box{
                         
                     }
                 }
@@ -79,7 +82,6 @@ fun CreateBizCard() {
     }
 }
 
-//@Preview
 @Composable
 fun Content() {
     Box(modifier = Modifier
@@ -101,7 +103,23 @@ fun Content() {
 fun Portfolio(data: List<String>) {
     LazyColumn{
         items(data){ item->
-            Text(item)
+            Card(modifier = Modifier
+                .padding(13.dp)
+                .fillMaxHeight()
+                .fillMaxWidth(),
+            shape = RectangleShape,
+            elevation = 4.dp) {
+                Row(modifier = Modifier
+                    .padding(8.dp)
+                    .background(MaterialTheme.colors.surface)
+                    .padding(7.dp)) {
+                    CreateProfileImage(modifier = Modifier.size(100.dp))
+                    Column(modifier = Modifier.padding(7.dp).align(alignment = Alignment.CenterVertically)) {
+                        Text(text = item, fontWeight = FontWeight.Bold)
+                        Text(text = "A great project", style=MaterialTheme.typography.body2)
+                    }
+                }
+            }
         }
 
     }
@@ -141,7 +159,7 @@ private fun CreateProfileImage(modifier: Modifier = Modifier) {
         Image(
             painter = painterResource(id = R.drawable.profile_image),
             contentDescription = "profile_image",
-            modifier = Modifier.size(135.dp),
+            modifier = modifier.size(135.dp),
             contentScale = ContentScale.Crop
         )
     }
